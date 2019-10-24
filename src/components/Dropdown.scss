@@ -1,0 +1,98 @@
+@import '../variables';
+
+.dropdown {
+   display: flex;
+
+   .toggle {
+      border: 0;
+      transform: scale(1);
+      transition: all .3s cubic-bezier(0, .79, .3, 1.45);
+
+      &:hover {
+            transform: scale(1.25);
+            transition: all .3s cubic-bezier(0, .79, .3, 1.45);
+      }
+   }
+
+   .dropdown-menu {
+      margin: 0;
+      padding: 1rem;
+      border: 0;
+      top: calc(100% - 20px);
+      right: 24px;
+      border-radius: 10px;
+      min-width: 246px;
+
+      .dropdown-item {
+         padding: 0 0 1rem;
+         margin-bottom: 1rem;
+         border-bottom: 1px solid #d8d8d8;
+         width: 214px;
+
+         .close {
+            display: none;
+
+            span {
+               line-height: 1rem;
+               display: inline-block;
+               padding: .25rem;
+            }
+         }
+
+         &:hover {
+            background: transparent;
+
+            .close {
+               display: inline-block;
+            }
+         }
+
+         &:last-child {
+            margin-bottom: 0;
+            border: 0;
+         }
+
+         img {
+            width: 51px;
+            height: 31px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-right: .8125rem;
+         }
+         h4 {
+            display: inline-block;
+            font-size: 1rem;
+         }
+      }
+
+      
+
+      &:after {
+         content: '';
+         width: 0;
+         height: 0;
+         border-left: 8px solid transparent;
+         border-right: 8px solid transparent;
+         border-bottom: 9px solid #FFF;
+         position: absolute;
+         right: 13px;
+         top: -8px;
+      }
+   }
+
+   .badge {
+      width: 18px;
+      height: 18px;
+      background-color: $primary;
+      border: 2px solid $secondary;
+      border-radius: 50%;
+      font-size: 9px;
+      font-weight: $font-weight-bolder;
+      color: #FFF;
+      text-align: center;
+      padding: 0;
+      line-height: 16px;
+      top: -13px;
+      right: 10px;
+   }
+}

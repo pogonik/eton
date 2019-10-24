@@ -1,0 +1,106 @@
+@import '../variables';
+
+@media (min-width: 992px) {
+   .products-list {
+      .container {
+         padding: 0;
+      }
+   }
+}
+
+.products {
+
+   padding-top: 77px;
+   opacity: 1;
+   transition: opacity .5s linear;
+
+   .dropdown-open & {
+      opacity: .25;
+      transition: opacity .35s linear;
+   }
+
+   @media (max-width: 768px) {
+      padding-top: 40px;
+   }
+   @media (max-width: 540px) {
+      padding-top: 20px;
+   }
+
+   @media (min-width: 992px) {
+      padding-left: -21px;
+      padding-right: -21px;
+
+      .col-md-4 {
+         padding-left: 21px;
+         padding-right: 21px;
+      }
+   }
+
+   .card {
+      border: 0 none;
+      color: #3c3c3c;
+      padding-bottom: 2.5rem;
+      height: 100%;
+
+      // hack koji sakriva deo slike
+      // i cuva aspect-ratio jer fotke nemaju isti odnos strana
+      .img-wrapper {
+         position: relative;
+         padding-top: 66.66%;
+         overflow: hidden;
+         border-top-left-radius: 10px;
+         border-top-right-radius: 10px;
+
+         .card-img-top {
+            // border-top-left-radius: 10px;
+            // border-top-right-radius: 10px;
+            width: 100%;
+            height: auto;
+            top: 0;
+            left: 0;
+            position: absolute;
+         }
+      }
+
+      .card-body {
+         text-align: left;
+         padding: $card-spacer-x;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-between;
+         flex-direction: column;
+
+         .top {
+            margin-bottom: 1rem;
+            position: relative;
+            min-height: 110px;
+
+            .card-title {
+               font-size: 1.375rem;
+               font-weight: $font-weight-bold;
+               position: relative;
+            }
+
+            .price {
+               position: absolute;
+               right: 0;
+               top: -4px;
+               font-size: 1.375rem;
+               font-weight: $font-weight-bolder;
+               color: $primary;
+            }
+         }
+
+         .right {
+            display: none;
+         }
+
+         .add-to-cart {
+            display: block;
+            background: $secondary;
+            border: 0;
+            font-weight: $font-weight-bolder;
+         }
+      }
+   }
+}
