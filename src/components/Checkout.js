@@ -6,7 +6,7 @@ class Checkout extends React.Component {
 
    buildProdsList() {
       return this.props.cart.map((itm, i) => {
-         return <ProductCard cartActions={this.props.cartActions} key={i} data={itm} />
+         return <ProductCard cartActions={this.props.cartActions} key={i} data={itm.data} />
       })
    }
 

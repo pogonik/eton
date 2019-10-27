@@ -21,7 +21,6 @@ class Dropdown extends React.PureComponent {
    }
 
    componentDidMount() {
-      this.props.toggle()
       document.addEventListener('mousedown', this.handleClickOutside);
    }
 
@@ -50,12 +49,12 @@ class Dropdown extends React.PureComponent {
       let prodsList = this.props.cart.map((itm, i) => {
          return (
             <div className="dropdown-item" key={i}>
-               <img src={itm.image} />
-               <h4>{itm.title}</h4>
+               <img src={itm.data.image} />
+               <h4>{itm.data.title}</h4>
                <button 
                   type="button" 
                   className="close" 
-                  onClick={() => { removeFromCart(itm.id) }}>
+                  onClick={() => { removeFromCart(itm.data.id) }}>
                   <span>x</span>
                </button>
             </div>

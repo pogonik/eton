@@ -13,10 +13,6 @@ class App extends Component {
 
    constructor(props) {
       super(props)
-
-      this.state = {
-         dropdownActive: false
-      }
    }
 
    render() {
@@ -51,22 +47,10 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => {
 
-   // Naravno, ovaj deo pre return-a bi trebalo da bude u reducer-u
-   // kao posebna funkcija, a planirao sam da bude deo state-a cart
-   // da ne gubim vreme, ubacio sam ga ovde
-   let cartTotal = 0;
-   let cartData = state.cart.map((itm, i) => {
-      let prodItm = state.products.products.find((prod) => itm.id === prod.id);
-      prodItm.quantity = itm.quantity;
-      prodItm.sum = Number(prodItm.price) * itm.quantity;
-      cartTotal += prodItm.sum;
-      return prodItm;
-   })
-
    return {
       products: state.products,
-      cart: cartData,
-      cartTotal: cartTotal,
+      cart: state.cart,
+      cartTotal: state.total,
       dropdown: state.dropdown.active
    }
 }
@@ -79,5 +63,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-//export default App

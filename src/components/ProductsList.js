@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Layout from './Layout'
 import ProductCard from './ProductCard'
 
 import './ProductsList.scss'

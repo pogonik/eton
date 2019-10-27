@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 import { types } from '../actions'
+import { useSelector } from 'react-redux'
+// import { createSelector } from 'reselect'
 
 let initProdsState = {
    products: [],
@@ -36,7 +38,7 @@ const cart = (state = initCart.cart, action = {}) => {
          itmIndex !== -1
             ? copiedState[itmIndex].quantity ++
             : copiedState.push({ id: action.payload, quantity: 1 });
-
+         
          return [...copiedState]
          break;
       case types.REMOVE_FROM_CART:
@@ -48,7 +50,11 @@ const cart = (state = initCart.cart, action = {}) => {
    }
 }
 
-const dropdown = (state = {}, action) => {
+let dropdownInit = {
+   active: false
+}
+
+const dropdown = (state = dropdownInit, action) => {
    switch (action.type) {
       case types.DROPDOWN_TOGGLE:
          return { ...state, active: action.payload };
@@ -57,6 +63,25 @@ const dropdown = (state = {}, action) => {
    }
 };
 
-export default combineReducers({
-   products, cart, dropdown
-});
+const reducers = (state = {}, action) => {
+
+   let kart = cart(state.cart, action);
+   let prods = products(state.products, action);
+   let cartTotal = 0;
+   let cartData = kart.map((itm, i) => {
+
+      let prodItm = prods.products.find((prod) => itm.id === prod.id);
+      prodItm.sum = Number(prodItm.price) * itm.quantity;
+      kart[i].data = prodItm;
+      cartTotal += prodItm.sum;
+   })
+
+   return {
+      products: prods,
+      cart: kart,
+      total: cartTotal,
+      dropdown: dropdown(state.dropdown, action)
+   }
+}
+
+export default reducers;
